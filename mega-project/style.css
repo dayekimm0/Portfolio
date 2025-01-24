@@ -17,7 +17,6 @@ body {
   & p {
     opacity: 1;
     color: var(--main-light-color);
-    text-shadow: 0 0 8px var(--main-light-color);
   }
   & h2 {
     color: var(--main-light-color);
@@ -120,6 +119,7 @@ body {
             padding: 10px;
             img {
               width: 100%;
+              margin-bottom: 20px;
             }
             h3 {
               margin-bottom: 16px;
@@ -134,6 +134,9 @@ body {
             span {
               font-size: 1.3rem;
               line-height: 1.5;
+            }
+            & > .home {
+              font-size: 0.7rem;
             }
           }
         }
@@ -169,24 +172,21 @@ body {
           & > div {
             padding: 10px;
             &:nth-child(1) {
-              width: 100%;
+              width: 590px;
               height: 300px;
               margin-bottom: 10px;
               img {
                 position: absolute;
                 width: 280px;
-                height: 300px;
+                height: 280px;
               }
               p {
-                padding: 10px;
-                margin-top: 80px;
-                margin-left: 330px;
-                font-size: 0.9rem;
+                margin: 80px 30px 0 280px;
+                font-size: 1.2rem;
                 text-align: center;
-                line-height: 1.4;
                 b {
                   font-size: 1.6rem;
-                  line-height: 1.4;
+                  font-weight: lighter;
                   color: var(--main-font-color);
                 }
               }
@@ -210,6 +210,7 @@ body {
                   top: 0;
                   right: 20px;
                   font-size: 1.6rem;
+                  font-weight: lighter;
                   color: var(--main-font-color);
                 }
               }
@@ -225,14 +226,15 @@ body {
                 height: 300px;
               }
               p {
-                padding: 8px;
+                padding: 10px;
                 line-height: 1.4;
                 position: relative;
-                font-size: 0.9rem;
+                font-size: 1rem;
                 b {
                   top: 0;
-                  right: 40px;
+                  right: 20px;
                   font-size: 1.6rem;
+                  font-weight: lighter;
                   color: var(--main-font-color);
                 }
               }
@@ -320,12 +322,18 @@ body {
           color: var(--main-font-color);
         }
         .inner {
+          &:hover {
+            transition: all 0.5s;
+            background: rgba(255, 255, 255, 0.15);
+            opacity: 1;
+            transform: scale(1.03);
+          }
           h3 {
             font-size: 1.6rem;
             margin: 10px;
             font-weight: lighter;
           }
-          img {
+          &.map {
             width: 100%;
             height: 580px;
             padding: 10px;

@@ -1,0 +1,302 @@
+@import "./styles/reset.scss";
+@import "./styles/variables.scss";
+
+@mixin btnStyle {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+@mixin btnDetail {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background: map-get($map: $color, $key: light);
+  position: absolute;
+  left: 0;
+  transition: all 0.5s;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+figure {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: inherit;
+  &::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
+    background: inherit;
+    background-image: var(--bg-image);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    filter: blur(20px);
+    z-index: -1;
+  }
+  & > h1 {
+    position: absolute;
+    top: 7vh;
+    left: 4vw;
+    font-size: 0;
+    strong {
+      font: bold 3.6rem/1.4 "arial";
+      color: map-get($map: $color, $key: light);
+      letter-spacing: 1px;
+    }
+    span {
+      display: block;
+      font: normal 1.2rem/1 "arial";
+      letter-spacing: 1px;
+      color: map-get($map: $color, $key: light);
+      opacity: 0.8;
+      text-align: center;
+    }
+  }
+  & > p {
+    position: absolute;
+    bottom: 7vh;
+    left: 50%;
+    transform: translateX(-50%);
+    color: map-get($map: $color, $key: light);
+    letter-spacing: 2px;
+    opacity: 0.8;
+    font: normal 1.2rem/1 "arial";
+  }
+  section {
+    width: 40vw;
+    height: 50vh;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-50%);
+    .slick-slide {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+    }
+    .slick-prev,
+    .slick-next {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      z-index: 1000;
+      position: absolute;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s;
+    }
+    .slick-prev {
+      left: -30%;
+      &::before {
+        content: "◀︎";
+        font-size: 3rem;
+      }
+    }
+    .slick-next {
+      right: -30%;
+      &::before {
+        content: "▶︎";
+        font-size: 3rem;
+      }
+    }
+    article {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      box-shadow: 10px 10px 20px rgba($color: #000000, $alpha: 0.1);
+      opacity: 0.9;
+      transform: scale(0.9);
+      transition: opacity 1s, transform 1s;
+
+      &.on {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .inner {
+        width: 100%;
+        height: 100%;
+        padding: 5vh 2.5vw 8vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 10px;
+        background: #ccc;
+        box-shadow: 10px 10px 20px rgba($color: #000000, $alpha: 0.1);
+        opacity: 0.8;
+        transform: scale(0.8);
+        transition: opacity 1s, transform 1s;
+
+        .pic {
+          width: 15vw;
+          height: 15vw;
+          border-radius: 50%;
+          margin-bottom: 20px;
+          position: relative;
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+
+        .txt {
+          text-align: center;
+          span {
+            font-size: 1.5rem;
+            color: map-get($map: $color, $key: desc);
+          }
+          h2 {
+            font-size: 3rem;
+            color: map-get($map: $color, $key: title);
+          }
+          p {
+            font-size: 1.6rem;
+            margin: 2vh 0 3vh;
+            color: map-get($map: $color, $key: desc);
+          }
+          ul {
+            display: flex;
+            justify-content: space-around;
+            li {
+              opacity: 0.6;
+              cursor: pointer;
+              transition: all 0.5s;
+              font-size: 1.8rem;
+              &.play {
+                font-size: 2rem;
+                transform: scale(1.5);
+                opacity: 0.9;
+                &:hover {
+                  transform: scale(2);
+                  opacity: 1;
+                }
+              }
+              &:hover {
+                opacity: 1;
+                transform: scale(1.5);
+              }
+            }
+          }
+        }
+      }
+    }
+    transition: all 1s;
+  }
+
+  .btnPrev {
+    @include btnStyle;
+    text-align: left;
+    left: 50%;
+    transform: translate(-30vw, -50%);
+    cursor: pointer;
+    &:hover {
+      span {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+      &::before {
+        transform: rotate(-30deg);
+      }
+      &::after {
+        transform: rotate(30deg);
+      }
+    }
+    span {
+      color: map-get($map: $color, $key: light);
+      font: normal 1.2rem/1 "arial";
+      opacity: 1;
+      transform: translateX(30%);
+      transition: all 0.5s;
+    }
+    &::before {
+      @include btnDetail();
+      top: 50%;
+      transform: rotate(-180deg);
+      transform-origin: left center;
+    }
+    &::after {
+      @include btnDetail();
+      bottom: 50%;
+      transform: rotate(180deg);
+      transform-origin: left center;
+    }
+  }
+  .btnNext {
+    @include btnStyle;
+    text-align: right;
+    right: 50%;
+    transform: translate(30vw, -50%);
+    &:hover {
+      span {
+        opacity: 0;
+        transform: translateX(-100%);
+      }
+      &::before {
+        transform: rotate(30deg);
+      }
+      &::after {
+        transform: rotate(-30deg);
+      }
+    }
+    &::before {
+      @include btnDetail();
+      top: 50%;
+      transform: rotate(180deg);
+      transform-origin: right center;
+    }
+    &::after {
+      @include btnDetail();
+      top: 50%;
+      transform: rotate(-180deg);
+      transform-origin: right center;
+    }
+  }
+}
+
+@keyframes ani {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ani2 {
+  0% {
+    transform: translateY(10%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(10%) rotate(360deg);
+  }
+}
